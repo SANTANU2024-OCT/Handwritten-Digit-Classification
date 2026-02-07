@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Handwritten Digit Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            text-align: center;
+        }
+        img {
+            max-width: 220px;
+            border: 2px solid white;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 22px;
+            color: #00ff99;
+        }
+        button {
+            padding: 6px 14px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Handwritten Digit Recognition (MNIST)</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="image" required>
+    <br><br>
+    <button type="submit">Predict</button>
+</form>
+
+{% if image_path %}
+    <h3>Uploaded Image</h3>
+    <img src="{{ image_path }}">
+{% endif %}
+
+{% if prediction %}
+    <div class="result">
+        Prediction: <b>{{ prediction }}</b><br>
+        Confidence: {{ confidence | round(2) }}%
+    </div>
+{% endif %}
+
+</body>
+</html>
